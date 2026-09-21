@@ -1,0 +1,161 @@
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import GeneralContext from "./GeneralContext";
+import { Tooltip, Grow } from "@mui/material";
+import { watchlist as initialWatchlist } from "../data/data";
+import { DoughnutChart } from "./DoughnoutChart";
+import {
+  BarChartOutlined,
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+  MoreHoriz,
+} from "@mui/icons-material";
+
+const WatchList = () => {
+  const [stocks, setStocks] = useState(initialWatchlist);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const fetchWatchlist = async () => {
+      try {
+        const res = await axios.get("http://localhost:3002/watchlist");
+        if (res.data && Array.isArray(res.data)) {
+          setStocks(res.data);
+        }
+      } catch (err) {
+        // Fallback to static watchlist if server ticker is offline
+      }
+    };
+
+    fetchWatchlist();
+    const interval = setInterval(fetchWatchlist, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const filteredStocks = stocks.filter((stock) =>
+    stock.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const labels = filteredStocks.map((stock) => stock.name);
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Price",
+        data: filteredStocks.map((stock) => stock.price),
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.5)",
+          "rgba(54, 162, 235, 0.5)",
+          "rgba(255, 206, 86, 0.5)",
+          "rgba(75, 192, 192, 0.5)",
+          "rgba(153, 102, 255, 0.5)",
+          "rgba(255, 159, 64, 0.5)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return (
+    <div className="watchlist-container">
+      <div className="search-container">
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Search eg: infy, bse, nifty, wipro..."
+          className="search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <span className="counts"> {filteredStocks.length} / {stocks.length}</span>
+      </div>
+
+      <ul className="list">
+        {filteredStocks.map((stock, index) => {
+          return <WatchListItem stock={stock} key={index} />;
+        })}
+      </ul>
+      <DoughnutChart data={data} />
+    </div>
+  );
+};
+
+export default WatchList;
+
+const WatchListItem = ({ stock }) => {
+  const [showWatchlistActions, setShowWatchlistActions] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowWatchlistActions(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowWatchlistActions(false);
+  };
+
+  return (
+    <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div className="item">
+        <p className={stock.isDown ? "down" : "up"}>{stock.name}</p>
+        <div className="item-info">
+          <span className="percent">{stock.percent}</span>
+          {stock.isDown ? (
+            <KeyboardArrowDown className="down" />
+          ) : (
+            <KeyboardArrowUp className="up" />
+          )}
+          <span className="price">{stock.price}</span>
+        </div>
+      </div>
+      {showWatchlistActions && <WatchListActions uid={stock.name} price={stock.price} />}
+    </li>
+  );
+};
+
+const WatchListActions = ({ uid, price }) => {
+  const generalContext = useContext(GeneralContext);
+
+  const handleBuyClick = () => {
+    generalContext.openBuyWindow(uid, price);
+  };
+
+  const handleSellClick = () => {
+    generalContext.openSellWindow(uid, price);
+  };
+
+  return (
+    <span className="actions">
+      <span>
+        <Tooltip title="Buy (B)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="buy" onClick={handleBuyClick}>
+            buy
+          </button>
+        </Tooltip>
+        <Tooltip title="Sell (S)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="sell" onClick={handleSellClick}>
+            sell
+          </button>
+        </Tooltip>
+        <Tooltip title="Analytics (A)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="action">
+            <BarChartOutlined className="icon" />
+          </button>
+        </Tooltip>
+        <Tooltip title="More (M)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="action">
+            <MoreHoriz className="icon" />
+          </button>
+        </Tooltip>
+      </span>
+    </span>
+  );
+};
