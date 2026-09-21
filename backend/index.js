@@ -21,6 +21,8 @@ const uri = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/stocksphere_db";
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 app.use(
   cors({
     origin: function (origin, callback) {

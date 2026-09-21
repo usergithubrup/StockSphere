@@ -2,6 +2,12 @@ const { UserModel: User } = require("../model/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 
+const cookieOptions = {
+  httpOnly: false,
+  sameSite: "none",
+  secure: true,
+};
+
 // Signup Handler
 module.exports.Signup = async (req, res, next) => {
   try {
@@ -12,10 +18,7 @@ module.exports.Signup = async (req, res, next) => {
     }
     const user = await User.create({ email, password, username, createdAt });
     const token = createSecretToken(user._id);
-    res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
-    });
+    res.cookie("token", token, cookieOptions);
     res
       .status(201)
       .json({ message: "User signed up successfully", success: true, user });
@@ -41,10 +44,7 @@ module.exports.Login = async (req, res, next) => {
       return res.json({ message: "Incorrect password or email", success: false });
     }
     const token = createSecretToken(user._id);
-    res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
-    });
+    res.cookie("token", token, cookieOptions);
     res.status(201).json({ message: "User logged in successfully", success: true });
   } catch (error) {
     console.error(error);
@@ -54,6 +54,6 @@ module.exports.Login = async (req, res, next) => {
 
 // Logout Handler
 module.exports.Logout = (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token", cookieOptions);
   res.status(200).json({ status: true, success: true, message: "Logged out successfully" });
 };
