@@ -43,6 +43,11 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
+// Root Health Check Route
+app.get("/", (req, res) => {
+  res.json({ message: "StockSphere Backend API is Running Live!", status: "OK" });
+});
+
 // Auth routes (/signup, /login, /userVerification)
 app.use("/", authRoute);
 
