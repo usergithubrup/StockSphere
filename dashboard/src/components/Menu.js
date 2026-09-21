@@ -35,7 +35,9 @@ const Menu = () => {
       console.log("Logout error:", err);
     }
     // Redirect to login on main site
-    window.location.href = "http://localhost:3000/login";
+    const frontendUrl = process.env.REACT_APP_FRONTEND_URL || 
+      (window.location.hostname === "localhost" ? "http://localhost:3000" : "https://stocksphere-frontend-one.vercel.app");
+    window.location.href = `${frontendUrl}/login`;
   };
 
   const getInitials = (name) => {
@@ -107,7 +109,10 @@ const Menu = () => {
             </Link>
           </li>
           <li>
-            <a style={{ textDecoration: "none" }} href="http://localhost:3000">
+            <a
+              style={{ textDecoration: "none" }}
+              href={process.env.REACT_APP_FRONTEND_URL || (window.location.hostname === "localhost" ? "http://localhost:3000" : "https://stocksphere-frontend-one.vercel.app")}
+            >
               <p className={menuClass}>Home</p>
             </a>
           </li>

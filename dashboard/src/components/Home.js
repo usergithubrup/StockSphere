@@ -3,6 +3,15 @@ import axios from "axios";
 import Dashboard from "./Dashboard";
 import TopBar from "./TopBar";
 
+const getFrontendLoginUrl = () => {
+  if (process.env.REACT_APP_FRONTEND_URL) {
+    return `${process.env.REACT_APP_FRONTEND_URL}/login`;
+  }
+  return window.location.hostname === "localhost"
+    ? "http://localhost:3000/login"
+    : "https://stocksphere-frontend-one.vercel.app/login";
+};
+
 const Home = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -15,13 +24,13 @@ const Home = () => {
         if (res.data && res.data.username) {
           setIsAuthenticated(true);
         } else {
-          window.location.href = "http://localhost:3000/login";
+          window.location.href = getFrontendLoginUrl();
         }
         setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = getFrontendLoginUrl();
       });
   }, []);
 

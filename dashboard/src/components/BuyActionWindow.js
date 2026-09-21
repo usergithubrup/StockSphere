@@ -43,7 +43,9 @@ const BuyActionWindow = ({ uid, initialPrice = 0, mode = "BUY" }) => {
       console.error("Order error:", err);
       if (err.response?.status === 401) {
         alert("Session expired or unauthorized. Redirecting to login page.");
-        window.location.href = "http://localhost:3000/login";
+        const loginUrl = process.env.REACT_APP_FRONTEND_URL ? `${process.env.REACT_APP_FRONTEND_URL}/login` :
+          (window.location.hostname === "localhost" ? "http://localhost:3000/login" : "https://stocksphere-frontend-one.vercel.app/login");
+        window.location.href = loginUrl;
         return;
       }
       const msg = err.response?.data?.message || "Error submitting order. Please check login session.";
