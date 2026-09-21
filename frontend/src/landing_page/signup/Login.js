@@ -24,8 +24,9 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
       const { data } = await axios.post(
-        "http://localhost:3002/login",
+        `${API_URL}/login`,
         { ...inputValue },
         { withCredentials: true }
       );
@@ -33,8 +34,9 @@ function Login() {
       if (success) {
         toast.success(message, { position: "bottom-right" });
         setTimeout(() => {
-          // Redirect user directly to the trading dashboard
-          window.location.href = "http://localhost:3001";
+          const dashboardUrl = process.env.REACT_APP_DASHBOARD_URL || 
+            (window.location.hostname === "localhost" ? "http://localhost:3001" : "https://stocksphere-dashboard.vercel.app");
+          window.location.href = dashboardUrl;
         }, 1000);
       } else {
         toast.error(message || "Invalid credentials", { position: "bottom-left" });

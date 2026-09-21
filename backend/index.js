@@ -23,7 +23,18 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: function (origin, callback) {
+      if (
+        !origin ||
+        origin.includes("localhost") ||
+        origin.includes("vercel.app") ||
+        origin.includes("onrender.com")
+      ) {
+        callback(null, true);
+      } else {
+        callback(null, true);
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

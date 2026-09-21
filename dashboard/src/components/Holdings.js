@@ -7,8 +7,9 @@ const Holdings = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
     axios
-      .get("http://localhost:3002/allHoldings", { withCredentials: true })
+      .get(`${API_URL}/allHoldings`, { withCredentials: true })
       .then((res) => {
         if (Array.isArray(res.data)) {
           setAllHoldings(res.data);

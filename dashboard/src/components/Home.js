@@ -8,8 +8,9 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
     axios
-      .get("http://localhost:3002/userProfile", { withCredentials: true })
+      .get(`${API_URL}/userProfile`, { withCredentials: true })
       .then((res) => {
         if (res.data && res.data.username) {
           setIsAuthenticated(true);

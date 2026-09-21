@@ -8,8 +8,9 @@ const Menu = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
     axios
-      .get("http://localhost:3002/userProfile", { withCredentials: true })
+      .get(`${API_URL}/userProfile`, { withCredentials: true })
       .then((res) => {
         if (res.data && res.data.username) {
           setUsername(res.data.username);
@@ -24,8 +25,9 @@ const Menu = () => {
 
   const handleLogout = async () => {
     try {
+      const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
       await axios.post(
-        "http://localhost:3002/logout",
+        `${API_URL}/logout`,
         {},
         { withCredentials: true }
       );

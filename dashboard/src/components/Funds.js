@@ -8,9 +8,10 @@ const Funds = () => {
 
   const fetchFunds = async () => {
     try {
+      const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
       const [profileRes, holdingsRes] = await Promise.all([
-        axios.get("http://localhost:3002/userProfile", { withCredentials: true }),
-        axios.get("http://localhost:3002/allHoldings", { withCredentials: true }),
+        axios.get(`${API_URL}/userProfile`, { withCredentials: true }),
+        axios.get(`${API_URL}/allHoldings`, { withCredentials: true }),
       ]);
 
       if (profileRes.data && profileRes.data.balance !== undefined) {
@@ -45,8 +46,9 @@ const Funds = () => {
     }
 
     try {
+      const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
       const res = await axios.post(
-        "http://localhost:3002/addFunds",
+        `${API_URL}/addFunds`,
         { amount },
         { withCredentials: true }
       );

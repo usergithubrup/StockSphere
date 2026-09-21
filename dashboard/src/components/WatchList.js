@@ -18,7 +18,8 @@ const WatchList = () => {
   useEffect(() => {
     const fetchWatchlist = async () => {
       try {
-        const res = await axios.get("http://localhost:3002/watchlist");
+        const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
+        const res = await axios.get(`${API_URL}/watchlist`);
         if (res.data && Array.isArray(res.data)) {
           setStocks(res.data);
         }

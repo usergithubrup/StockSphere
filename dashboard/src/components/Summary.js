@@ -10,9 +10,10 @@ const Summary = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
         const [userRes, holdingsRes] = await Promise.all([
-          axios.get("http://localhost:3002/userProfile", { withCredentials: true }),
-          axios.get("http://localhost:3002/allHoldings", { withCredentials: true }),
+          axios.get(`${API_URL}/userProfile`, { withCredentials: true }),
+          axios.get(`${API_URL}/allHoldings`, { withCredentials: true }),
         ]);
 
         if (userRes.data && userRes.data.username) {

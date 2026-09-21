@@ -20,8 +20,9 @@ const BuyActionWindow = ({ uid, initialPrice = 0, mode = "BUY" }) => {
   const handleOrderClick = async () => {
     setErrorMessage("");
     try {
+      const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
       const res = await axios.post(
-        "http://localhost:3002/newOrder",
+        `${API_URL}/newOrder`,
         {
           name: uid,
           qty: Number(stockQuantity),

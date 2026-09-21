@@ -25,8 +25,9 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
       const { data } = await axios.post(
-        "http://localhost:3002/signup",
+        `${API_URL}/signup`,
         { ...inputValue },
         { withCredentials: true }
       );

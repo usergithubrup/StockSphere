@@ -5,8 +5,9 @@ const Positions = () => {
   const [allPositions, setAllPositions] = useState([]);
 
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
     axios
-      .get("http://localhost:3002/allPositions", { withCredentials: true })
+      .get(`${API_URL}/allPositions`, { withCredentials: true })
       .then((res) => {
         if (Array.isArray(res.data)) {
           setAllPositions(res.data);

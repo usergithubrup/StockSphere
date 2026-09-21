@@ -7,8 +7,9 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL || "https://stocksphere-phnk.onrender.com";
     axios
-      .get("http://localhost:3002/allOrders", { withCredentials: true })
+      .get(`${API_URL}/allOrders`, { withCredentials: true })
       .then((res) => {
         if (Array.isArray(res.data)) {
           setOrders(res.data);
