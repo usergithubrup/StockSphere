@@ -5,14 +5,14 @@ function Footer() {
         <footer style={{ backgroundColor: "rgb(250, 250, 250)" }}>
       <div className="container border-top mt-5">
         <div className="row mt-5">
-          <div className="col">
-            <img src="media/images/logo.png" style={{ width: "50%" }} />
+          <div className="col-12 col-sm-6 col-md-3 mb-4">
+            <img src="media/images/logo.png" style={{ width: "140px", maxWidth: "80%" }} alt="Logo" className="img-fluid mb-2" />
             <p>
               &copy; 2010 - 2026, StockSphere Broking Ltd. All rights reserved.
             </p>
           </div>
-          <div className="col">
-            <p>Company</p>
+          <div className="col-12 col-sm-6 col-md-3 mb-4">
+            <p className="fw-bold">Company</p>
             <a href="">About</a>
             <br />
             <a href="">Products</a>
@@ -30,8 +30,8 @@ function Footer() {
             <a href="">StockSphere cares (CSR)</a>
             <br />
           </div>
-          <div className="col">
-            <p>Support</p>
+          <div className="col-12 col-sm-6 col-md-3 mb-4">
+            <p className="fw-bold">Support</p>
             <a href="">Contact</a>
             <br />
             <a href="">Support portal</a>
@@ -43,8 +43,8 @@ function Footer() {
             <a href="">Downloads & resources</a>
             <br />
           </div>
-          <div className="col">
-            <p>Account</p>
+          <div className="col-12 col-sm-6 col-md-3 mb-4">
+            <p className="fw-bold">Account</p>
             <a href="">Open an account</a>
             <br />
             <a href="">Fund transfer</a>

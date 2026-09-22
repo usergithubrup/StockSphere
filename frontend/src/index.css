@@ -44,3 +44,48 @@ code {
     font-size: 16px;
   }
 }
+
+/* Global Responsive Rules for Mobile Viewports (iPhone 16 / Mobile Devices) */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .p-5 {
+    padding: 1.25rem !important;
+  }
+
+  .m-5 {
+    margin: 1.25rem !important;
+  }
+
+  .mt-5 {
+    margin-top: 1.25rem !important;
+  }
+
+  .mb-5 {
+    margin-bottom: 1.25rem !important;
+  }
+
+  h1, .fs-1 {
+    font-size: 1.75rem !important;
+  }
+
+  h2, .fs-2 {
+    font-size: 1.4rem !important;
+  }
+
+  h3, .fs-3 {
+    font-size: 1.25rem !important;
+  }
+
+  h4, .fs-4 {
+    font-size: 1.1rem !important;
+  }
+}

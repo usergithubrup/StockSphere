@@ -3,8 +3,8 @@ import React from "react";
 function Stats() {
   return (
     <div className="container p-3">
-      <div className="row p-5">
-        <div className="col-6 p-5">
+      <div className="row p-3 p-md-5">
+        <div className="col-12 col-md-6 p-3 p-md-5">
           <h1 className="fs-2 mb-5">Trust with confidence</h1>
           <h2 className="fs-4">Customer-first always</h2>
           <p className="text-muted">
@@ -28,16 +28,16 @@ function Stats() {
             money.
           </p>
         </div>
-        <div className="col-6 p-5">
-          <img src="media/images/ecosystem.png" style={{ width: "90%" }} />
-          <div className="text-center">
-            <a href="" className="mx-5" style={{ textDecoration: "none" }}>
+        <div className="col-12 col-md-6 p-3 p-md-5 text-center">
+          <img src="media/images/ecosystem.png" className="img-fluid mb-4" style={{ maxWidth: "90%" }} alt="Ecosystem" />
+          <div className="text-center d-flex flex-column flex-sm-row justify-content-center gap-3">
+            <a href="" style={{ textDecoration: "none" }}>
               Explore our products{" "}
-              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+              <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
             <a href="" style={{ textDecoration: "none" }}>
               Try Kite demo{" "}
-              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+              <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
           </div>
         </div>

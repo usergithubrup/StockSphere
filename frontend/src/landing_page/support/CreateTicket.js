@@ -5,9 +5,9 @@ function CreateTicket() {
         <div className="container">
       <div className="row p-5 mt-5 mb-5">
         <h1 className="fs-2">To create a ticket, select a relevant topic</h1>
-        <div className="col-4 p-5 mt-2 mb-2">
+        <div className="col-12 col-md-4 p-3 p-md-4 mt-2 mb-2">
           <h4 className="">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i> Account Opening
+            <i className="fa fa-plus-circle" aria-hidden="true"></i> Account Opening
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
             Online Account Opening
@@ -42,9 +42,9 @@ function CreateTicket() {
           </a>
           <br />
         </div>
-        <div className="col-4 p-5 mt-2 mb-2">
+        <div className="col-12 col-md-4 p-3 p-md-4 mt-2 mb-2">
           <h4 className="">
-            <i class="fa-solid fa-user"></i> Your StockSphere Account
+            <i className="fa-solid fa-user"></i> Your StockSphere Account
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
             Login Credentials
@@ -66,9 +66,9 @@ function CreateTicket() {
             Transfer and conversion of shares
           </a>
         </div>
-        <div className="col-4 p-5 mt-2 mb-2">
+        <div className="col-12 col-md-4 p-3 p-md-4 mt-2 mb-2">
           <h4 className="">
-            <i class="fa-solid fa-chart-column"></i> Your StockSphere Account
+            <i className="fa-solid fa-chart-column"></i> Your StockSphere Account
           </h4>
           <a href="" style={{ textDecoration: "none", lineHeight: "2.5" }}>
             Margin/leverage,Product and Order types

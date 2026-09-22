@@ -21,7 +21,7 @@ function Universe() {
           partner platforms
         </p>
 
-        <div className="col-4 p-3 mt-5">
+        <div className="col-12 col-sm-6 col-md-4 p-3 mt-3 mt-md-5">
           <img 
             src="media/images/smallcaseLogo.png" 
             alt="Smallcase" 
@@ -30,7 +30,7 @@ function Universe() {
           <p className="text-small text-muted">Thematic investment platform</p>
         </div>
 
-        <div className="col-4 p-3 mt-5">
+        <div className="col-12 col-sm-6 col-md-4 p-3 mt-3 mt-md-5">
           <img 
             src="media/images/streakLogo.png" 
             alt="Streak" 
@@ -39,7 +39,7 @@ function Universe() {
           <p className="text-small text-muted">Algo & strategy platform</p>
         </div>
 
-        <div className="col-4 p-3 mt-5">
+        <div className="col-12 col-sm-6 col-md-4 p-3 mt-3 mt-md-5">
           <img 
             src="media/images/sensibullLogo.svg" 
             alt="Sensibull" 
@@ -48,7 +48,7 @@ function Universe() {
           <p className="text-small text-muted">Options trading platform</p>
         </div>
 
-        <div className="col-4 p-3 mt-5">
+        <div className="col-12 col-sm-6 col-md-4 p-3 mt-3 mt-md-5">
           <img 
             src="media/images/goldenpiLogo.png" 
             alt="GoldenPi" 
@@ -57,7 +57,7 @@ function Universe() {
           <p className="text-small text-muted">Bonds trading platform</p>
         </div>
 
-        <div className="col-4 p-3 mt-5">
+        <div className="col-12 col-sm-6 col-md-4 p-3 mt-3 mt-md-5">
           <img 
             src="media/images/dittoLogo.png" 
             alt="Ditto" 
