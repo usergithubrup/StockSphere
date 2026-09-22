@@ -57,7 +57,7 @@ const Holdings = () => {
     <>
       <h3 className="title">Holdings ({allHoldings.length})</h3>
 
-      <div className="order-table">
+      <div className="order-table table-responsive">
         <table>
           <thead>
             <tr>

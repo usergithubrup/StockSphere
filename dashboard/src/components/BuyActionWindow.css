@@ -218,4 +218,22 @@
     background: #9b9b9b;
     color: #fff;
   }
+
+  @media (max-width: 768px) {
+    .container {
+      width: 92%;
+      left: 4%;
+      bottom: 10px;
+      height: auto;
+      max-height: 85vh;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    }
   
+    .buttons {
+      top: 0;
+      margin-top: 15px;
+      padding: 0 10px;
+      flex-wrap: wrap;
+      gap: 10px;
+  }
+}

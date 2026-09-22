@@ -20,7 +20,7 @@ const Positions = () => {
     <>
       <h3 className="title">Positions ({allPositions.length})</h3>
 
-      <div className="order-table">
+      <div className="order-table table-responsive">
         <table>
           <thead>
             <tr>
